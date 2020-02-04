@@ -1,0 +1,47 @@
+---
+title: "Assignment 3"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+# Edited .data file in Excel. Saved as .csv file
+read.csv("C:/Users/John.JVivs/Documents/COLLEGE/GRAD SCHOOL/GDAT515/jviviani-assignment3/o-ring-erosion-or-blowby.csv") -> nasa
+
+# Programatic way of reading in the original .data file.
+# data.table::fread("./o-ring-erosion-or-blowby.data") -> test
+
+ggplot(data = nasa, mapping = aes(x = launch_temp, y = o_rings_distress, color = flight_number)) + 
+  scale_colour_gradient(low = "red", high = "white") + 
+  geom_point() + 
+  theme_dark() +
+  xlab("Launch Temperature (°F)") + 
+  ylab("O-rings Experiencing Thermal Distress") + 
+  ggtitle("USA Space Shuttle Challenger", subtitle = "O-rings Experiencing Thermal Distress Versus Launch Temperature")
+
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Caption
+
+It appears that as the launch temperature drops, the instances of O-rings experiencing thermal distress increases. Based on this premise, the launch temperature of the Challenger at 31°F was likely going to lead to thermal distress. Therefore, this visualization would lead me towards halting the launch.
+
+```{r}
+
+```
+
